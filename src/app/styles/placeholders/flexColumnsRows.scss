@@ -1,0 +1,15 @@
+@import "../mixins/mixins.scss";
+@import "../variables/variables.scss";
+
+%columnCentered {
+    @include setFlexDisplay(column, center, center);
+}
+%rowCentered {
+    @include setFlexDisplay(row, center, center);
+}
+%rowLeft {
+    @include setFlexDisplay(row, flex-start, center);
+}
+%rowSpaceBetween {
+    @include setFlexDisplay(row, space-between, center);
+}

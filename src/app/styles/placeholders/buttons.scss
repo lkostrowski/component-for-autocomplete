@@ -1,0 +1,9 @@
+@import "../mixins/mixins.scss";
+@import "../variables/variables.scss";
+
+%btnTransparent {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: $font-main, $font-alternative;
+}

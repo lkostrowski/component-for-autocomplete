@@ -1,0 +1,21 @@
+@import "../mixins/mixins.scss";
+@import "../variables/variables.scss";
+
+%paletteContrastWhite {
+    @include setColorPalette($color_contrast, $color_white);
+}
+%paletteLightDark {
+    @include setColorPalette($color_light, $color_dark);
+}
+%paletteLightMedium {
+    @include setColorPalette($color_light, $color_medium);
+}
+%paletteWhite {
+    @include setColorPalette($color_white, $color_dark);
+}
+%paletteWhiteContrast {
+    @include setColorPalette($color_white, $color_contrast);
+}
+%paletteWhiteLight {
+    @include setColorPalette($color_white, $color_light);
+}
