@@ -1,21 +1,18 @@
 @import "../mixins/mixins.scss";
 @import "../variables/variables.scss";
 
-%paletteContrastWhite {
-    @include setColorPalette($color_contrast, $color_white);
-}
-%paletteLightDark {
-    @include setColorPalette($color_light, $color_dark);
-}
-%paletteLightMedium {
-    @include setColorPalette($color_light, $color_medium);
-}
 %paletteWhite {
     @include setColorPalette($color_white, $color_dark);
 }
-%paletteWhiteContrast {
-    @include setColorPalette($color_white, $color_contrast);
-}
-%paletteWhiteLight {
-    @include setColorPalette($color_white, $color_light);
+
+%paletteWhiteWithBorder {
+    @extend %paletteWhite;
+    border: 2px solid $color_light;
+    transition: border-color 0.5s background-color 0.5s;
+    border-radius: 5px;
+
+    &:hover {
+        border-color: $color_light;
+        background-color: $color_light;
+    }
 }
