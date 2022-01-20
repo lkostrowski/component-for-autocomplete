@@ -1,0 +1,11 @@
+@import "../../styles/mixins/mixins.scss";
+@import "../../styles/placeholders/placeholders.scss";
+@import "../../styles/variables/variables.scss";
+
+.suggestions-list {
+    @extend %columnCentered;
+    @extend %paletteWhiteWithBorder;
+    border: 1px solid $color_light;
+    padding: 0;
+    width: 90vw;
+}
