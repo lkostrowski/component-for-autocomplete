@@ -6,6 +6,7 @@
   @extend %columnCentered;
   @extend %noPaddingNoMargin;
   @extend %paletteWhite;
+  cursor: default;
   font-family: $font-main, $font-alternative;
   width: 100%;
 }
