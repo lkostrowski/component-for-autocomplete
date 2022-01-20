@@ -1,5 +1,6 @@
 import React from 'react';
 import { LabelForAddedItem } from './components/labelForAddedItem/labelForAddedItem.component';
+import { SuggestionsList } from './components/suggestionsList/suggestionsList.component';
 import './app.scss';
 
 function App(): JSX.Element {
@@ -9,6 +10,7 @@ function App(): JSX.Element {
                 onClose={() => console.log('on close')}
                 title={'added item'}
             />
+            <SuggestionsList />
         </div>
     );
 }
