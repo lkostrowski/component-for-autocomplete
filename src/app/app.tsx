@@ -1,16 +1,11 @@
 import React from 'react';
-import { LabelForAddedItem } from './components/labelForAddedItem/labelForAddedItem.component';
-import { SuggestionsList } from './components/suggestionsList/suggestionsList.component';
+import { MainComponentForAutocomplete } from './components/mainComponentForAutocomplete/mainComponentForAutocomplete.component';
 import './app.scss';
 
 function App(): JSX.Element {
     return (
         <div className="App">
-            <LabelForAddedItem
-                onClose={() => console.log('on close')}
-                title={'added item'}
-            />
-            <SuggestionsList />
+            <MainComponentForAutocomplete title={'Component for autocomplete'}/>
         </div>
     );
 }
