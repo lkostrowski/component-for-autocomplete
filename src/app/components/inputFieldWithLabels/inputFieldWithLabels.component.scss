@@ -1,0 +1,35 @@
+@import "../../styles/mixins/mixins.scss";
+@import "../../styles/placeholders/placeholders.scss";
+@import "../../styles/variables/variables.scss";
+
+.input-field-with-labels {
+    @extend %columnCentered;
+    @extend %paletteWhite;
+    border-radius: 10px;
+    margin: 0 5px;
+    padding: 10px;
+    width: 86vw;
+
+    .input-field {
+        border-bottom: 0.5px solid $color_light;
+        width: 80vw;
+
+        input[type="text"] {
+            @extend %rowLeft;
+            background: transparent;
+            border: none;
+            height: 20px;
+            margin: 10px 0;
+            padding: 5px;
+            width: 80vw;
+        }
+    }
+
+    .labels-container {
+        @extend %rowLeft;
+        flex-wrap: wrap;
+        margin: 10px 0;
+        padding: 0 5px;
+        width: 82vw;
+    }
+}
