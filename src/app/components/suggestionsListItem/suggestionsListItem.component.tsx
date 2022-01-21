@@ -12,8 +12,9 @@ export function SuggestionsListItem({
 }: SuggestionsListItemProps): JSX.Element {
     return (
         <li
+            tabIndex={0}
             className={`suggestions-list-item ${
-                suggestion === selectedSuggestion && 'selected'
+                suggestion === selectedSuggestion ? 'selected' : ''
             }`}
         >
             <p>{suggestion}</p>

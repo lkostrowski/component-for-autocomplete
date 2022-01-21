@@ -1,6 +1,4 @@
-import React, { useState, 
-    // useEffect
- } from 'react';
+import React, { useState } from 'react';
 import { LabelForAddedItem } from '../labelForAddedItem/labelForAddedItem.component';
 import { SuggestionsList } from '../suggestionsList/suggestionsList.component';
 import './inputFieldWithLabels.component.scss';
@@ -15,21 +13,33 @@ export function InputFieldWithLabels({
     predefinedList
 }: InputFieldWithLabelsProps): JSX.Element {
     const [userInput, setUserInput] = useState<string>('');
-    const [suggestions, setSuggestions] = useState(['']) ;
+    const [suggestions, setSuggestions] = useState(['']);
+    const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(0);
+    const [selectedSuggestionsList, setSelectedSuggestionsList] = useState(['']);
 
-    function matchSuggestionsToInput(input: string, predefinedListItem: string) {
+    function matchSuggestionsToInput(
+        input: string,
+        predefinedListItem: string
+    ) {
         const regex = new RegExp(`^${input}`, `i`);
         const match = regex.test(predefinedListItem);
         return match;
-        // return predefinedListItem.toLowerCase().startsWith(input.toLowerCase()) ? true : false; 
+        // return predefinedListItem.toLowerCase().startsWith(input.toLowerCase()) ? true : false;
     }
 
-    function renderSuggestions(userInput: string, predefinedList: Array<string>) {
-        const result: Array<string> = predefinedList.filter(item => matchSuggestionsToInput(userInput, item))
+    function renderSuggestions(
+        userInput: string,
+        predefinedList: Array<string>
+    ) {
+        const result: Array<string> = predefinedList.filter((item) =>
+            matchSuggestionsToInput(userInput, item)
+        );
         setSuggestions(result);
     }
 
-    function onChangeUserInput(event: React.ChangeEvent<HTMLInputElement>): void {
+    function onChangeUserInput(
+        event: React.ChangeEvent<HTMLInputElement>
+    ): void {
         const inputValue = event.target.value;
         setUserInput(inputValue);
         renderSuggestions(inputValue, predefinedList);
@@ -48,21 +58,22 @@ export function InputFieldWithLabels({
                 </form>
 
                 <div className="labels-container">
-                    <LabelForAddedItem
+                    {selectedSuggestionsList?.map(selectedSuggestion => <LabelForAddedItem
                         onClose={() => {
                             console.log('on close');
                         }}
-                        title={'added item'}
-                    />
-                    <LabelForAddedItem
-                        onClose={() => {
-                            console.log('on close');
-                        }}
-                        title={'added item'}
-                    />
+                        title={selectedSuggestion}
+                    />)}
                 </div>
             </div>
-            <SuggestionsList suggestions={suggestions} selectedSuggestion={suggestions[0]}/>
+            <SuggestionsList
+                suggestions={suggestions}
+                selectedSuggestion={suggestions[selectedSuggestionIndex]}
+                onSetSelectedIndex={setSelectedSuggestionIndex}
+                selectedSuggestionIndex={selectedSuggestionIndex}
+                selectedSuggestionsList={selectedSuggestionsList}
+                onSetSelectedSuggestionsList={setSelectedSuggestionsList}
+            />
         </div>
     );
 }
