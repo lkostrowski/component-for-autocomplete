@@ -3,19 +3,23 @@ import { SuggestionsListItem } from '../suggestionsListItem/suggestionsListItem.
 import './suggestionsList.component.scss';
 
 interface SuggestionsListProps {
+    suggestions: Array<string>;
+    selectedSuggestion: string;
 }
 
-export function SuggestionsList({}: SuggestionsListProps): JSX.Element {
+export function SuggestionsList({
+    suggestions,
+    selectedSuggestion
+}: SuggestionsListProps): JSX.Element {
     return (
         <ul className="suggestions-list">
-            <SuggestionsListItem suggestion={'example suggestion'} />
-            <SuggestionsListItem suggestion={'example suggestion'} />
-            <SuggestionsListItem suggestion={'example suggestion'} />
-            <SuggestionsListItem suggestion={'example suggestion'} />
-            <SuggestionsListItem suggestion={'example suggestion'} />
-            <SuggestionsListItem suggestion={'example suggestion'} />
-            <SuggestionsListItem suggestion={'example suggestion'} />
-            <SuggestionsListItem suggestion={'example suggestion'} />
+            {suggestions.map((suggestion) => (
+                    <SuggestionsListItem
+                        key={suggestion}
+                        suggestion={suggestion}
+                        selectedSuggestion={selectedSuggestion}
+                    />
+            ))}
         </ul>
     );
 }

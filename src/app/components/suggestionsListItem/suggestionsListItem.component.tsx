@@ -3,13 +3,19 @@ import './suggestionsListItem.component.scss';
 
 interface SuggestionsListItemProps {
     suggestion: string;
+    selectedSuggestion: string;
 }
 
 export function SuggestionsListItem({
-    suggestion
+    suggestion,
+    selectedSuggestion
 }: SuggestionsListItemProps): JSX.Element {
     return (
-        <li className="suggestions-list-item">
+        <li
+            className={`suggestions-list-item ${
+                suggestion === selectedSuggestion && 'selected'
+            }`}
+        >
             <p>{suggestion}</p>
         </li>
     );
