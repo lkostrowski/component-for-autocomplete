@@ -3,54 +3,53 @@ import { Suggestion } from '../suggestion/suggestion.component';
 import './suggestions.component.scss';
 
 interface SuggestionsProps {
-    onSetSelectedIndex: (selectedSuggestionIndex: number) => void;
-    onSetSelectedSuggestions: (selectedSuggestions: Array<string>) => void;
-    selectedSuggestion: string;
-    selectedSuggestionIndex: number | null;
-    selectedSuggestions: Array<string>;
+    onSetSelectionIndex: (selectionIndex: number) => void;
+    onSetTags: (tags: Array<string>) => void;
+    tag: string;
+    selectionIndex: number | null;
+    tags: Array<string>;
     suggestions: Array<string>;
 }
 
 export function Suggestions({
-    onSetSelectedIndex,
-    onSetSelectedSuggestions,
-    selectedSuggestion,
-    selectedSuggestionIndex,
-    selectedSuggestions,
+    onSetSelectionIndex,
+    onSetTags,
+    tag,
+    selectionIndex,
+    tags,
     suggestions
 }: SuggestionsProps): JSX.Element {
-    useEffect(() => {}, [selectedSuggestionIndex, selectedSuggestions]);
+    useEffect(() => {}, [selectionIndex, tags]);
 
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! - event: any to change
     function onKeyDownHandler(event: any): void {
         if (event.code === 'ArrowDown') {
-            if (typeof selectedSuggestionIndex === 'number') {
-                const selectedIndex = selectedSuggestionIndex + 1;
-                if (selectedIndex < suggestions.length) {
-                    onSetSelectedIndex(selectedIndex);
+            if (typeof selectionIndex === 'number') {
+                selectionIndex = selectionIndex + 1;
+                if (selectionIndex < suggestions.length) {
+                    onSetSelectionIndex(selectionIndex);
                 }
             } else {
-                selectedSuggestionIndex = 0;
-                const selectedIndex = selectedSuggestionIndex;
-                onSetSelectedIndex(selectedIndex);
+                selectionIndex = 0;
+                onSetSelectionIndex(selectionIndex);
             }
         }
 
         if (event.code === 'ArrowUp') {
-            if (typeof selectedSuggestionIndex === 'number') {
-                const selectedIndex = selectedSuggestionIndex - 1;
-                if (selectedIndex >= 0) {
-                    onSetSelectedIndex(selectedIndex);
+            if (typeof selectionIndex === 'number') {
+                selectionIndex = selectionIndex - 1;
+                if (selectionIndex >= 0) {
+                    onSetSelectionIndex(selectionIndex);
                 }
             }
         }
 
         if (event.code === 'Enter') {
-            if (typeof selectedSuggestionIndex === 'number') {
-                const selected = suggestions[selectedSuggestionIndex];
-                if (selectedSuggestions.indexOf(selected) === -1) {
-                    selectedSuggestions.push(selected);
-                    onSetSelectedSuggestions(selectedSuggestions);
+            if (typeof selectionIndex === 'number') {
+                const selected = suggestions[selectionIndex];
+                if (tags.indexOf(selected) === -1) {
+                    tags.push(selected);
+                    onSetTags(tags);
                     const indexToRemove = suggestions.indexOf(selected);
                     suggestions.splice(indexToRemove, 1);
                 }
@@ -67,7 +66,7 @@ export function Suggestions({
             {suggestions?.map((suggestion) => (
                 <Suggestion
                     key={suggestion}
-                    selectedSuggestion={selectedSuggestion}
+                    tag={tag}
                     suggestion={suggestion}
                 />
             ))}

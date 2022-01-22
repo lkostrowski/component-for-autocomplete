@@ -3,19 +3,14 @@ import './suggestion.component.scss';
 
 interface SuggestionProps {
     suggestion: string;
-    selectedSuggestion: string;
+    tag: string;
 }
 
-export function Suggestion({
-    suggestion,
-    selectedSuggestion
-}: SuggestionProps): JSX.Element {
-
+export function Suggestion({ suggestion, tag }: SuggestionProps): JSX.Element {
     return (
-        <li tabIndex={0}
-            className={`suggestion ${
-                suggestion === selectedSuggestion ? 'selected' : ''
-            }`}
+        <li
+            tabIndex={0}
+            className={`suggestion ${suggestion === tag ? 'selected' : ''}`}
         >
             <p>{suggestion}</p>
         </li>

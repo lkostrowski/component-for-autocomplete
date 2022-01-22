@@ -14,16 +14,12 @@ export function InputWithLabels({
 }: InputWithLabelsProps): JSX.Element {
     const [userInput, setUserInput] = useState<string>('');
     const [suggestions, setSuggestions] = useState<Array<string>>([]);
-    const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState<
-        number | null
-    >(null);
-    const [selectedSuggestions, setSelectedSuggestions] = useState<
-        Array<string>
-    >([]);
+    const [selectionIndex, setSelectionIndex] = useState<number | null>(null);
+    const [tags, setTags] = useState<Array<string>>([]);
 
     useEffect(() => {
-        console.log(selectedSuggestions);
-    }, [selectedSuggestionIndex, selectedSuggestions]);
+        console.log(tags);
+    }, [selectionIndex, tags]);
 
     function matchSuggestionsToInput(
         input: string,
@@ -60,7 +56,7 @@ export function InputWithLabels({
     // function onKeyDownInputHandler(event: any): void {
     //     if (event.code === 'ArrowDown') {
     //         if (suggestions.length > 0) {
-    //             setSelectedSuggestionIndex(0);
+    //             setSelectionIndex(0);
     //         }
     //     }
 
@@ -69,9 +65,9 @@ export function InputWithLabels({
     //         setUserInput(inputValue);
 
     //         if (predefinedList.indexOf(inputValue) === -1) {
-    //             selectedSuggestions.push(inputValue);
+    //             tags.push(inputValue);
     //             // onChangeUserInput(event);
-    //             // setSelectedSuggestions(selectedSuggestions);
+    //             // setTags(tags);
     //         }
     //     }
     // }
@@ -91,25 +87,25 @@ export function InputWithLabels({
                 </form>
 
                 <div className="selected-labels">
-                    {selectedSuggestions?.map((selectedSuggestion) => (
+                    {tags?.map((tag) => (
                         <LabelForSelected
                             onClose={onCloseHandler}
-                            title={selectedSuggestion}
-                            key={`label-${selectedSuggestion}`}
+                            tagName={tag}
+                            key={`label-${tag}`}
                         />
                     ))}
                 </div>
                 {
                     <Suggestions
-                        onSetSelectedIndex={setSelectedSuggestionIndex}
-                        onSetSelectedSuggestions={setSelectedSuggestions}
-                        selectedSuggestion={
-                            selectedSuggestionIndex
-                                ? suggestions[selectedSuggestionIndex]
+                        onSetSelectionIndex={setSelectionIndex}
+                        onSetTags={setTags}
+                        tag={
+                            selectionIndex
+                                ? suggestions[selectionIndex]
                                 : userInput
                         }
-                        selectedSuggestionIndex={selectedSuggestionIndex}
-                        selectedSuggestions={selectedSuggestions}
+                        selectionIndex={selectionIndex}
+                        tags={tags}
                         suggestions={suggestions}
                     />
                 }
