@@ -1,19 +1,19 @@
 import React from 'react';
-import './suggestionsListItem.component.scss';
+import './suggestion.component.scss';
 
-interface SuggestionsListItemProps {
+interface SuggestionProps {
     suggestion: string;
     selectedSuggestion: string;
 }
 
-export function SuggestionsListItem({
+export function Suggestion({
     suggestion,
     selectedSuggestion
-}: SuggestionsListItemProps): JSX.Element {
+}: SuggestionProps): JSX.Element {
+
     return (
-        <li
-            tabIndex={0}
-            className={`suggestions-list-item ${
+        <li tabIndex={0}
+            className={`suggestion ${
                 suggestion === selectedSuggestion ? 'selected' : ''
             }`}
         >

@@ -2,12 +2,12 @@
 @import "../../styles/placeholders/placeholders.scss";
 @import "../../styles/variables/variables.scss";
 
-.suggestions-list {
+.autocomplete {
     @extend %columnCentered;
-    @extend %paletteWhite;
-    border-radius: 10px;
-    margin: 10px 5px;
+    background-color: $color_light;
+    border: 1px solid $color_light;
+    margin: 10vw;
     padding: 10px;
-    width: 86vw;
-    transition: background-color 0.5s;
+    width: 90vw;
+    border-radius: 10px;
 }

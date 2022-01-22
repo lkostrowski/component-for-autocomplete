@@ -1,11 +1,11 @@
 import React from 'react';
-import { MainComponentForAutocomplete } from './components/mainComponentForAutocomplete/mainComponentForAutocomplete.component';
+import { Autocomplete } from './components/autocomplete/autocomplete.component';
 import './app.scss';
 
 function App(): JSX.Element {
     return (
         <div className="App">
-            <MainComponentForAutocomplete
+            <Autocomplete
                 title={'Component for autocomplete'}
                 predefinedList={[
                     'kot',

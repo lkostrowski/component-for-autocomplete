@@ -2,7 +2,7 @@
 @import "../../styles/placeholders/placeholders.scss";
 @import "../../styles/variables/variables.scss";
 
-.suggestions-list-item {
+.suggestion {
     @extend %paletteWhite;
     @extend %rowLeft;
     border-bottom: 0.5px solid $color_light;
@@ -23,11 +23,16 @@
 }
 
 .selected {
-    background-color: $color_light;
-    color: $color_dark;
-    border: 1px solid $color_dark;
+    background-color: $color_contrast;
+    color: $color_white;
+    border: 0.5px solid $color_dark;
     &:hover {
-        border: 2px solid $color_dark;
-        background-color: $color_light;
+        border: 0.5px solid $color_white;
+        background-color: $color_contrast;
+    }
+    &:active {
+        border: 0.5px solid $color_white;
+        background-color: $color_white;
+        color: $color_dark;
     }
 }

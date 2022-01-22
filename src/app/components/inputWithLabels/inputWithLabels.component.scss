@@ -2,7 +2,7 @@
 @import "../../styles/placeholders/placeholders.scss";
 @import "../../styles/variables/variables.scss";
 
-.input-field-with-labels {
+.input-with-labels {
     @extend %columnCentered;
     @extend %paletteWhite;
     border-radius: 10px;
@@ -10,9 +10,13 @@
     padding: 10px;
     width: 86vw;
 
-    .input-field {
+    .inputField {
         border-bottom: 0.5px solid $color_light;
         width: 80vw;
+
+        input {
+            cursor: text;
+        }
 
         input[type="text"] {
             @extend %rowLeft;
@@ -25,7 +29,7 @@
         }
     }
 
-    .labels-container {
+    .selected-labels {
         @extend %rowLeft;
         flex-wrap: wrap;
         margin: 10px 0;
