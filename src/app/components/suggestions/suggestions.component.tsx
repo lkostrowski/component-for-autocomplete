@@ -7,6 +7,7 @@ interface FocusedSuggestion {
 }
 
 interface SuggestionsProps {
+    onSelectSuggestion: () => void;
     onSetTags: (tags: Array<string>) => void;
     tags: Array<string>;
     suggestions: Array<string>;
@@ -14,6 +15,7 @@ interface SuggestionsProps {
 }
 
 export function Suggestions({
+    onSelectSuggestion,
     onSetTags,
     tags,
     suggestions,
@@ -58,6 +60,7 @@ export function Suggestions({
             ) {
                 focusedSuggestion &&
                     onSetTags([...tags, focusedSuggestion.value]);
+                    onSelectSuggestion();
             }
         }
     }

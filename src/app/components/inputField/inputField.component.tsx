@@ -16,6 +16,7 @@ export function InputField({
     const [userInput, setUserInput] = useState<string>('');
     const [suggestions, setSuggestions] = useState<Array<string>>([]);
     const [tags, setTags] = useState<Array<string>>([]);
+    const inputRef = useRef<HTMLInputElement | null>(null);
     const suggestionsRef = useRef([]);
 
     useEffect(() => {},  [tags]);
@@ -50,6 +51,7 @@ export function InputField({
                 setTags([...tags, (event.target as HTMLInputElement).value]);
             }
             setUserInput('');
+            setSuggestions([]);
         }
     }
 
@@ -70,6 +72,7 @@ export function InputField({
                         onChange={onChangeUserInput}
                         onKeyDown={onKeyDownInputHandler}
                         placeholder={placeholder}
+                        ref={element => inputRef.current = element}
                         tabIndex={0}
                         type="text"
                         value={userInput}
@@ -77,6 +80,11 @@ export function InputField({
                 </div>
 
                 <Suggestions
+                    onSelectSuggestion={() => {
+                        setSuggestions([]);
+                        setUserInput('');
+                        inputRef.current?.focus();
+                    }}
                     onSetTags={setTags}
                     tags={tags}
                     suggestions={suggestions}
