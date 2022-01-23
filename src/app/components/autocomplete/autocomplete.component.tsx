@@ -1,22 +1,22 @@
 import React from 'react';
-import { InputWithLabels } from '../inputWithLabels/inputWithLabels.component';
+import { InputField } from '../inputField/inputField.component';
 import './autocomplete.component.scss';
 
 interface AutocompleteProps {
-    title: string;
     predefinedList: Array<string>;
+    title: string;
 }
 
 export function Autocomplete({
-    title,
-    predefinedList
+    predefinedList,
+    title
 }: AutocompleteProps): JSX.Element {
     return (
         <div className="autocomplete">
             <h1>{title}</h1>
-            <InputWithLabels
-                predefinedList={predefinedList}
+            <InputField
                 placeholder={'Start typing something...'}
+                predefinedList={predefinedList}
             />
         </div>
     );

@@ -16,7 +16,10 @@ function App(): JSX.Element {
                     'amber',
                     'amberaanjnkjafa',
                     'amberamberkkkajf',
-                    'ara'
+                    'ara',
+                    'abba@gmail.com',
+                    '50-560 Example City',
+                    '#ABC abc a-b-c'
                 ]}
             />
         </div>

@@ -2,7 +2,7 @@
 @import "../../styles/placeholders/placeholders.scss";
 @import "../../styles/variables/variables.scss";
 
-.label-for-selected {
+.tag {
     @extend %fontLabel;
     @extend %paletteWhiteWithBorder;
     @extend %rowSpaceBetween;
