@@ -1,11 +1,27 @@
 import React from 'react';
-import { MainComponentForAutocomplete } from './components/mainComponentForAutocomplete/mainComponentForAutocomplete.component';
+import { Autocomplete } from './components/autocomplete/autocomplete.component';
 import './app.scss';
 
 function App(): JSX.Element {
     return (
         <div className="App">
-            <MainComponentForAutocomplete title={'Component for autocomplete'}/>
+            <Autocomplete
+                title={'Component for autocomplete'}
+                predefinedList={[
+                    '#ABC abc a-b-c',
+                    '50-560 Example City',
+                    'abba@gmail.com',
+                    'amber',
+                    'amberaanjnkjafa',
+                    'amberamberkkkajf',
+                    'ameba',
+                    'ara',
+                    'kot',
+                    'pies',
+                    'żaba',
+                    'żółw'
+                ]}
+            />
         </div>
     );
 }

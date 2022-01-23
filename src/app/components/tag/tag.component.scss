@@ -2,7 +2,7 @@
 @import "../../styles/placeholders/placeholders.scss";
 @import "../../styles/variables/variables.scss";
 
-.label-for-added-item {
+.tag {
     @extend %fontLabel;
     @extend %paletteWhiteWithBorder;
     @extend %rowSpaceBetween;
@@ -13,7 +13,7 @@
 
     .btn-close {
         @extend %rowCentered;
-        background-color: transparent;
+        background-color: $color_medium;
         border-radius: 50%;
         border: none;
         cursor: pointer;
@@ -23,9 +23,9 @@
         width: 20px;
 
         &:hover {
-            background-color: $color_white;
-            border-color: $color_medium;
-            color: $color_dark;
+            background-color: $color_alert;
+            border-color: $color_alert;
+            color: $color_alert;
         }
         &:active {
             background-color: $color_light;
