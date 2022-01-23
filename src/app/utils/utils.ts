@@ -12,8 +12,7 @@ export function matchSuggestionToInputValue(
     suggestionToMatch: string
 ): boolean {
     const regex = new RegExp(`${inputValue}`, `i`);
-    const match = regex.test(suggestionToMatch);
-    return match;
+    return regex.test(suggestionToMatch);
 }
 
 export function trimString(str: string): string {
