@@ -19,8 +19,6 @@ export function Suggestions({
     suggestions,
     suggestionsReference
 }: SuggestionsProps): JSX.Element {
-    // const [focusedSuggestionIndex, setFocusedSuggestionIndex] =
-    //     useState<number>(0);
     const [focusedSuggestion, setFocusedSuggestion] =
         useState<FocusedSuggestion | null>(null);
 
@@ -28,18 +26,11 @@ export function Suggestions({
         setFocusedSuggestion({ index: 0, value: suggestions[0] });
     }, [suggestions]);
 
-    useEffect(() => {}, [
-        // focusedSuggestionIndex,
-        focusedSuggestion,
-        suggestions
-    ]);
+    useEffect(() => {}, [focusedSuggestion, suggestions]);
 
-    function onKeyDownHandler(event: any): void {
+    function onKeyDownHandler(event: React.KeyboardEvent<HTMLElement>): void {
         if (event.code === 'ArrowDown') {
-            // if (event.code === 'ArrowDown' && focusedSuggestion === null) {
-            //     setFocusedSuggestion({ index: 1, value: suggestions[0] });
-            // }
-            if (focusedSuggestion?.index) {
+            if (typeof focusedSuggestion?.index === 'number') {
                 const nextIndex = focusedSuggestion.index + 1;
                 suggestionsReference.current[nextIndex].focus();
                 setFocusedSuggestion({
@@ -47,23 +38,17 @@ export function Suggestions({
                     value: suggestions[nextIndex]
                 });
             }
-            // if (focusedSuggestion === null) {
-
-            // }
-            // setFocusedSuggestionIndex(nextIndex);
         }
 
-        if (event.code === 'ArrowUp' && focusedSuggestion?.index) {
-            if (event.code === 'ArrowDown' && focusedSuggestion === null) {
-                setFocusedSuggestion({ index: 0, value: suggestions[0] });
+        if (event.code === 'ArrowUp') {
+            if (focusedSuggestion?.index) {
+                const previousIndex = focusedSuggestion.index - 1;
+                suggestionsReference.current[previousIndex].focus();
+                setFocusedSuggestion({
+                    index: previousIndex,
+                    value: suggestions[previousIndex]
+                });
             }
-            const previousIndex = focusedSuggestion.index - 1;
-            suggestionsReference.current[previousIndex].focus();
-            setFocusedSuggestion({
-                index: previousIndex,
-                value: suggestions[previousIndex]
-            });
-            // setFocusedSuggestionIndex(previousIndex);
         }
 
         if (event.code === 'Enter') {
@@ -78,10 +63,7 @@ export function Suggestions({
     }
 
     return (
-        <ul
-            className="suggestions"
-            onKeyDown={onKeyDownHandler}
-        >
+        <ul className="suggestions" onKeyDown={onKeyDownHandler}>
             {suggestions?.map((suggestion, i) => (
                 <li
                     className="suggestion"

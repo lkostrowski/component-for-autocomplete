@@ -37,7 +37,7 @@ export function InputField({
         setTags([...tags]);
     }
 
-    function onKeyDownInputHandler(event: any): void {
+    function onKeyDownInputHandler(event: React.KeyboardEvent<HTMLInputElement>): void {
         if (event.code === 'ArrowDown') {
             const firstSuggestionRef: HTMLElement = suggestionsRef.current[0];
             if (firstSuggestionRef) {
@@ -46,8 +46,8 @@ export function InputField({
         }
 
         if (event.code === 'Enter') {
-            if (tags.indexOf(event.target.value) === -1) {
-                setTags([...tags, event.target.value]);
+            if (tags.indexOf((event.target as HTMLInputElement).value ) === -1) {
+                setTags([...tags, (event.target as HTMLInputElement).value]);
             }
             setUserInput('');
         }

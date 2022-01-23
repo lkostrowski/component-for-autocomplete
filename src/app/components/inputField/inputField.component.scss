@@ -11,7 +11,7 @@
     width: 86vw;
 
     .input-with-tags {
-        @extend %rowSpaceBetween;
+        @extend %rowLeft;
         border-bottom: 0.5px solid $color_light;
         flex-wrap: wrap;
         width: 80vw;
@@ -27,7 +27,6 @@
             height: 20px;
             margin: 10px 0;
             padding: 5px;
-            width: 50vw;
         }
     }
 
@@ -36,6 +35,5 @@
         flex-wrap: wrap;
         margin: 10px 0;
         padding: 0 5px;
-        width: 30vw;
     }
 }
