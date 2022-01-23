@@ -36,7 +36,9 @@ export function InputField({
         setTags([...tags]);
     }
 
-    function onKeyDownInputHandler(event: React.KeyboardEvent<HTMLInputElement>): void {
+    function onKeyDownInputHandler(
+        event: React.KeyboardEvent<HTMLInputElement>
+    ): void {
         if (event.code === 'ArrowDown') {
             const firstSuggestionRef: HTMLElement = suggestionsRef.current[0];
             if (firstSuggestionRef) {
@@ -45,12 +47,18 @@ export function InputField({
         }
 
         if (event.code === 'Enter') {
-            if (tags.indexOf((event.target as HTMLInputElement).value ) === -1) {
+            if (tags.indexOf((event.target as HTMLInputElement).value) === -1) {
                 setTags([...tags, (event.target as HTMLInputElement).value]);
             }
             setUserInput('');
             setSuggestions([]);
         }
+    }
+
+    function onSelectSuggestionHandler() {
+        setSuggestions([]);
+        setUserInput('');
+        inputRef.current?.focus();
     }
 
     return (
@@ -70,7 +78,7 @@ export function InputField({
                         onChange={onChangeUserInput}
                         onKeyDown={onKeyDownInputHandler}
                         placeholder={placeholder}
-                        ref={element => inputRef.current = element}
+                        ref={(element) => (inputRef.current = element)}
                         tabIndex={0}
                         type="text"
                         value={userInput}
@@ -78,11 +86,7 @@ export function InputField({
                 </div>
 
                 <Suggestions
-                    onSelectSuggestion={() => {
-                        setSuggestions([]);
-                        setUserInput('');
-                        inputRef.current?.focus();
-                    }}
+                    onSelectSuggestion={onSelectSuggestionHandler}
                     onSetTags={setTags}
                     tags={tags}
                     suggestions={suggestions}
