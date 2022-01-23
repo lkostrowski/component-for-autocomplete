@@ -8,18 +8,18 @@ function App(): JSX.Element {
             <Autocomplete
                 title={'Component for autocomplete'}
                 predefinedList={[
-                    'kot',
-                    'pies',
-                    'żaba',
-                    'żółw',
-                    'ameba',
+                    '#ABC abc a-b-c',
+                    '50-560 Example City',
+                    'abba@gmail.com',
                     'amber',
                     'amberaanjnkjafa',
                     'amberamberkkkajf',
+                    'ameba',
                     'ara',
-                    'abba@gmail.com',
-                    '50-560 Example City',
-                    '#ABC abc a-b-c'
+                    'kot',
+                    'pies',
+                    'żaba',
+                    'żółw'
                 ]}
             />
         </div>

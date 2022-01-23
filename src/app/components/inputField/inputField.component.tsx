@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { filterSuggestions } from '../../utils/utils';
 import { Tag } from '../tag/tag.component';
 import { Suggestions } from '../suggestions/suggestions.component';
@@ -17,9 +17,7 @@ export function InputField({
     const [suggestions, setSuggestions] = useState<Array<string>>([]);
     const [tags, setTags] = useState<Array<string>>([]);
     const inputRef = useRef<HTMLInputElement | null>(null);
-    const suggestionsRef = useRef([]);
-
-    useEffect(() => {},  [tags]);
+    const suggestionsRef = useRef<Array<HTMLLIElement>>([]);
 
     function onChangeUserInput(
         event: React.ChangeEvent<HTMLInputElement>
@@ -60,7 +58,7 @@ export function InputField({
             <div className="input-field">
                 <div className="input-with-tags">
                     <div className="tags">
-                        {tags?.map((tag) => (
+                        {tags.map((tag) => (
                             <Tag
                                 key={`tag-${tag}`}
                                 onClickHandler={() => onClickHandler(tag)}
