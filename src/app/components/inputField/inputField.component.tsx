@@ -18,14 +18,14 @@ export function InputField({
     const [tags, setTags] = useState<Array<string>>([]);
     const suggestionsRef = useRef([]);
 
-    useEffect(() => {}, [tags]);
+    useEffect(() => {},  [tags]);
 
     function onChangeUserInput(
         event: React.ChangeEvent<HTMLInputElement>
     ): void {
         setUserInput(event.target.value);
         const filteredSuggestions = filterSuggestions(
-            userInput,
+            event.target.value,
             predefinedList
         );
         setSuggestions(filteredSuggestions);

@@ -11,7 +11,7 @@ export function matchSuggestionToInputValue(
     inputValue: string,
     suggestionToMatch: string
 ): boolean {
-    const regex = new RegExp(`^${inputValue}`, `i`);
+    const regex = new RegExp(`${inputValue}`, `i`);
     const match = regex.test(suggestionToMatch);
     return match;
 }
