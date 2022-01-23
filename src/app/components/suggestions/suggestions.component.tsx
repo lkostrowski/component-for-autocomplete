@@ -1,4 +1,9 @@
 import React, { MutableRefObject, useEffect, useState } from 'react';
+import {
+    EVENT_CODE_ARROW_DOWN_KEY,
+    EVENT_CODE_ARROW_UP_KEY,
+    EVENT_CODE_ENTER_KEY
+} from '../../utils/consts';
 import './suggestions.component.scss';
 
 interface FocusedSuggestion {
@@ -7,19 +12,21 @@ interface FocusedSuggestion {
 }
 
 interface SuggestionsProps {
+    inputReference: MutableRefObject<HTMLInputElement | null>;
     onSelectSuggestion: () => void;
     onSetTags: (tags: Array<string>) => void;
-    tags: Array<string>;
     suggestions: Array<string>;
     suggestionsReference: MutableRefObject<HTMLElement[]>;
+    tags: Array<string>;
 }
 
 export function Suggestions({
+    inputReference,
     onSelectSuggestion,
     onSetTags,
-    tags,
     suggestions,
-    suggestionsReference
+    suggestionsReference,
+    tags
 }: SuggestionsProps): JSX.Element {
     const [focusedSuggestion, setFocusedSuggestion] =
         useState<FocusedSuggestion | null>(null);
@@ -31,8 +38,8 @@ export function Suggestions({
     useEffect(() => {}, [focusedSuggestion, suggestions]);
 
     function onKeyDownHandler(event: React.KeyboardEvent<HTMLElement>): void {
-        if (event.code === 'ArrowDown') {
-            if (typeof focusedSuggestion?.index === 'number') {
+        if (event.code === EVENT_CODE_ARROW_DOWN_KEY) {
+            if (focusedSuggestion !== null) {
                 const nextIndex = focusedSuggestion.index + 1;
                 suggestionsReference.current[nextIndex].focus();
                 setFocusedSuggestion({
@@ -42,7 +49,10 @@ export function Suggestions({
             }
         }
 
-        if (event.code === 'ArrowUp') {
+        if (event.code === EVENT_CODE_ARROW_UP_KEY) {
+            if (focusedSuggestion?.index === 0) {
+                inputReference?.current?.focus();
+            }
             if (focusedSuggestion?.index) {
                 const previousIndex = focusedSuggestion.index - 1;
                 suggestionsReference.current[previousIndex].focus();
@@ -53,14 +63,14 @@ export function Suggestions({
             }
         }
 
-        if (event.code === 'Enter') {
+        if (event.code === EVENT_CODE_ENTER_KEY) {
             if (
                 focusedSuggestion &&
                 tags.indexOf(focusedSuggestion.value) === -1
             ) {
                 focusedSuggestion &&
                     onSetTags([...tags, focusedSuggestion.value]);
-                    onSelectSuggestion();
+                onSelectSuggestion();
             }
         }
     }
@@ -71,15 +81,15 @@ export function Suggestions({
                 <li
                     className="suggestion"
                     key={suggestion}
-                    ref={(liElement) =>
-                        (suggestionsReference.current[i] = liElement!)
-                    }
                     onFocus={() => {
                         setFocusedSuggestion({
                             index: i,
                             value: suggestions[i]
                         });
                     }}
+                    ref={(liElement) =>
+                        (suggestionsReference.current[i] = liElement!)
+                    }
                     tabIndex={0}
                 >
                     <p>{suggestion}</p>

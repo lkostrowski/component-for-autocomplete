@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { EVENT_CODE_ARROW_DOWN_KEY, EVENT_CODE_ENTER_KEY } from '../../utils/consts';
 import { filterSuggestions } from '../../utils/utils';
 import { Tag } from '../tag/tag.component';
 import { Suggestions } from '../suggestions/suggestions.component';
@@ -39,14 +40,14 @@ export function InputField({
     function onKeyDownInputHandler(
         event: React.KeyboardEvent<HTMLInputElement>
     ): void {
-        if (event.code === 'ArrowDown') {
+        if (event.code === EVENT_CODE_ARROW_DOWN_KEY) {
             const firstSuggestionRef: HTMLElement = suggestionsRef.current[0];
             if (firstSuggestionRef) {
                 firstSuggestionRef.focus();
             }
         }
 
-        if (event.code === 'Enter') {
+        if (event.code === EVENT_CODE_ENTER_KEY) {
             if (tags.indexOf((event.target as HTMLInputElement).value) === -1) {
                 setTags([...tags, (event.target as HTMLInputElement).value]);
             }
@@ -86,11 +87,12 @@ export function InputField({
                 </div>
 
                 <Suggestions
+                    inputReference={inputRef}
                     onSelectSuggestion={onSelectSuggestionHandler}
                     onSetTags={setTags}
-                    tags={tags}
                     suggestions={suggestions}
                     suggestionsReference={suggestionsRef}
+                    tags={tags}
                 />
             </div>
         </div>
